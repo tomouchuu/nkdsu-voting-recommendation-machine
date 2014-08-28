@@ -1,0 +1,10 @@
+.song {
+  display: block;
+  border: 1px solid $nkdsu-orange;
+  border-radius: 5px;
+  margin: 15px 0;
+  padding: 15px;
+}
+
+.song > h3 { margin-top: 0; }
+.song > h5 { margin-bottom: 0; }

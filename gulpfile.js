@@ -85,6 +85,14 @@ gulp.task('styles', function() {
 
 });
 
+// Images task
+gulp.task('images', function() {
+
+  return gulp.src('app/images/**.*')
+          .pipe(gulp.dest('build/images'));
+
+});
+
 // Views task
 gulp.task('views', function() {
 
@@ -113,6 +121,10 @@ gulp.task('watch', function() {
   gulp.watch(['app/styles/**/*.scss'], [
     'styles'
   ]);
+  // Watch our images
+  gulp.watch(['app/images/**/*.*'], [
+    'images'
+  ]);
   // Watch our views
   gulp.watch(['app/index.html', 'app/views/**/*.html'], [
     'views'
@@ -129,7 +141,7 @@ gulp.task('dev', function() {
   lrserver.listen(livereloadport);
 
   // Run all tasks once
-  runSequence('styles', 'views', 'browserify');
+  runSequence('styles', 'views', 'browserify', 'images');
 
   // Then, run the watch task to keep tabs on changes
   gulp.start('watch');

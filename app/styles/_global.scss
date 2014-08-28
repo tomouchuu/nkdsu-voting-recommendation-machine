@@ -1,0 +1,18 @@
+body { color: $font-color; }
+
+a { color: $nkdsu-orange; }
+  a:hover {
+    color: darken($nkdsu-orange, 20%);
+    text-decoration: none
+  }
+
+.btn-twitter {
+  background-color: #55ACEE;
+  border-color: #ccc;
+  color: #fff;
+}
+  .btn-twitter:hover {
+    background-color: $nkdsu-orange;
+    border-color: #ccc;
+    color: #fff; 
+  }
