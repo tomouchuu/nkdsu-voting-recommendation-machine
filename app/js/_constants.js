@@ -1,7 +1,7 @@
 'use strict';
 
 var AppSettings = {
-  appTitle: 'Toridesu~~',
+  appTitle: 'Toridesu~',
   mashapeAuthKey: 'mashape authkey here';
 };
 
