@@ -1,9 +1,30 @@
 .song {
   display: block;
-  border: 1px solid $nkdsu-orange;
+  border: 1px solid #ccc;
+  color: $nkdsu-orange;
+  cursor: pointer;
   border-radius: 5px;
   margin: 15px 0;
   padding: 15px;
+  position: relative;
+}
+
+.song:hover { border: 1px solid $nkdsu-orange; }
+.song.selected {
+  background-color: rgba($nkdsu-orange, 0.2);
+  border: 1px solid $nkdsu-orange;
+}
+
+.song > .art {
+  background-position: center center;
+  background-size: cover;
+  height: 100%;
+  left: 0;
+  opacity: 0.08;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 0;
 }
 
 .song > h3 { margin-top: 0; }
