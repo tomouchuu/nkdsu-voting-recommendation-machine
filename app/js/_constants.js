@@ -2,7 +2,10 @@
 
 var AppSettings = {
   appTitle: 'Toridesu~',
-  mashapeAuthKey: 'mashape authkey here';
+  twitterCap: 140,
+  twitterAccount: '@nkdsu',
+  twitterLinkLength: 23,
+  mashapeAuthKey: 'mashape authkey here',
 };
 
 module.exports = AppSettings;

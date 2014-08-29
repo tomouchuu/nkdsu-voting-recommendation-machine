@@ -5,7 +5,7 @@ var controllersModule = require('./_index');
 /**
  * @ngInject
  */
-function MainCtrl($timeout, HummingbirdService, NkdsuService) {
+function MainCtrl($scope, $timeout, AppSettings, HummingbirdService, NkdsuService) {
 
   function shuffleArray(array) {
     for (var i = array.length - 1; i > 0; i--) {
@@ -20,6 +20,38 @@ function MainCtrl($timeout, HummingbirdService, NkdsuService) {
   // ViewModel
   var vm = this;
   vm.startSearch = false;
+
+  $scope.voteTweet = '';
+
+  $scope.voteurls = '';
+  var numberOfUrls = 0;
+
+  $scope.twitterLength = (AppSettings.twitterCap - AppSettings.twitterAccount.length - 1);
+  var baseTwitterLength = (AppSettings.twitterCap - AppSettings.twitterAccount.length - 1);
+
+  $scope.$watch('home.twitterMsg', function(newValue, oldValue) {
+    if (angular.isDefined(newValue))
+    {
+      $scope.twitterLength = (baseTwitterLength - (numberOfUrls * AppSettings.twitterLinkLength) - numberOfUrls - newValue.length);
+      $scope.voteTweet = 'https://twitter.com/intent/tweet?text=@nkdsu ' + $scope.voteurls + vm.twitterMsg;
+    }
+    else
+    {
+      vm.twitterMsg = '';
+      $scope.voteTweet = 'https://twitter.com/intent/tweet?text=@nkdsu ' + $scope.voteurls;
+    }
+  });
+
+  $scope.$watch('voteurls', function(newValue, oldValue) {
+    if (angular.isDefined(newValue) && vm.twitterMsg === '')
+    {
+      $scope.voteTweet = 'https://twitter.com/intent/tweet?text=@nkdsu ' + $scope.voteurls + vm.twitterMsg;
+    }
+    else if (angular.isDefined(newValue))
+    {
+      $scope.voteTweet = 'https://twitter.com/intent/tweet?text=@nkdsu ' + $scope.voteurls;
+    }
+  });
 
   var buttonText = [
     'Another round',
@@ -89,6 +121,27 @@ function MainCtrl($timeout, HummingbirdService, NkdsuService) {
         vm.startSearch = false;
         vm.recommendedSongs = recommendedSongs;
       }, 1500);
+      $timeout(function(){
+        $('.song').click(function() {
+          var voteurl = $(this).attr('data-voteurl');
+
+          if ($(this).hasClass('selected'))
+          {
+            $(this).removeClass('selected');
+            $scope.voteurls = $scope.voteurls.replace(voteurl + ' ', '');
+            numberOfUrls--;
+            $scope.twitterLength = (baseTwitterLength - (numberOfUrls * AppSettings.twitterLinkLength) - numberOfUrls - vm.twitterMsg.length);
+          }
+          else
+          {
+            $(this).addClass('selected');
+            $scope.voteurls += voteurl + ' ';
+            numberOfUrls++;
+            $scope.twitterLength = (baseTwitterLength - (numberOfUrls * AppSettings.twitterLinkLength) - numberOfUrls - vm.twitterMsg.length);
+          }
+          $scope.$digest();
+        });
+      }, 1550);
     });
 
   }

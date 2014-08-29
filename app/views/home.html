@@ -12,12 +12,10 @@
       <button type="submit" class="btn btn-default btn-block" ng-click="home.recommendedSongs = ''">{{ home.buttonText }}</button>
     </form>
 
-    <!-- <div class="twitter" ng-show="home.recommendedSongs"> -->
     <div class="twitter">
-      <label for="twitterMsg">Enter optional message</label>
-      <textarea ng-model="home.twitterMsg" id="twitterMsg" class="form-control" rows="5"></textarea>
-      <a href="#" class="btn btn-twitter btn-block" ng-hide="home.recommendedSongs.length > 6">Vote for all recommendations</a>
-      <a href="#" class="btn btn-twitter btn-block">Vote for selected recommendations</a>
+      <label for="twitterMsg">Enter optional message <br><small>{{ twitterLength }} characters left</small></label>
+      <textarea ng-model="home.twitterMsg" id="twitterMsg" class="form-control" rows="5">{{ home.twitterMsg }}</textarea>
+      <a ng-href="{{ voteTweet }}" class="btn btn-twitter btn-block" ng-class="{disabled: twitterLength < 0}">Vote for selected recommendations</a>
     </div>
 
     <div class="footer">
@@ -29,10 +27,11 @@
   </div>
 
   <div class="col-xs-9" ng-show="home.recommendedSongs">
-    <a href="" class="song" ng-repeat="song in home.recommendedSongs">
+    <div class="song" ng-repeat="song in home.recommendedSongs" data-voteUrl="{{ song.url }}">
+      <div style="background-image: url('{{ song.background }}');" class="art"></div>
       <h3>{{ song.title }} <small>{{ song.artist }}</small></h3>
       <h5>{{ song.role }}</h5>
-    </a>
+    </div>
   </div>
 
   <div class="col-xs-9" ng-show="home.startSearch">
