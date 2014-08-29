@@ -22,3 +22,7 @@ build/Release
 node_modules
 .lock-wscript
 app/js/templates.js
+
+build
+
+app/js/constants.js
