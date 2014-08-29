@@ -16,10 +16,9 @@ function NkdsuService($q, $http) {
       .get('https://nkd.su/api/search/?q=' + username)
       .success(function(data) {
         var output = data.filter(function(x){
-          // return x.status === 'on-hold';
-          // return x.status !== 'plan-to-watch';
+          return x.eligible === true;
         });
-        deferred.resolve(data);
+        deferred.resolve(output);
       })
       .error(function(err, status) {
           deferred.reject(err, status);
