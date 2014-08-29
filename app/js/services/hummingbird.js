@@ -6,7 +6,7 @@ var fs = require('fs');
 /**
  * @ngInject
  */
-function HummingbirdService($q, $http) {
+function HummingbirdService(AppSettings, $q, $http) {
 
   var service = {};
 
@@ -15,7 +15,7 @@ function HummingbirdService($q, $http) {
 
     $http
       .get('https://hbrd-v1.p.mashape.com/users/' + username + '/library', {headers : {
-        "X-Mashape-Authorization": "hKVIKmHhUO16QZy8Vjgd8rkcprAZyGlW"
+        "X-Mashape-Authorization": AppSettings.mashapeAuthKey
       }})
       .success(function(data) {
         var output = data.filter(function(x){

@@ -13,7 +13,9 @@ Feel free to give me thoughts and improvements for it!
 ### Setting Up
 
 1. Run `npm install` from the directory
-2. Run `gulp dev` (may require installing Gulp globally)
-3. Navigate to `localhost:3000` to view the application
+2. You'll want to create an account on Mashape and register an app for the Hummingbird API V1 (https://www.mashape.com/hummingbird/hummingbird-apiv1)
+3. Rename `_constants.js` in `app/js/` to `constants.js` and replace the mashapeAuthKey string with your auth key.
+4. Run `gulp dev` (may require installing Gulp globally)
+5. Navigate to `localhost:3000` to view the application
 
 Now that `gulp dev` is running, the server is up as well. Any changes will be automatically processed by Gulp and the server will be updated.
