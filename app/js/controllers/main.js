@@ -64,6 +64,8 @@ function MainCtrl($rootScope, $scope, $timeout, AppSettings, HummingbirdService,
   ]
 
   vm.buttonText = 'Recommend me some songs';
+  
+  vm.errAttempt = 0;
 
   vm.submit = function (username) {
     var newButtonText = shuffleArray(buttonText)[0];
@@ -73,6 +75,12 @@ function MainCtrl($rootScope, $scope, $timeout, AppSettings, HummingbirdService,
 
     var recommendedSongs = [];
     var userLibrary = HummingbirdService.get(username);
+
+    userLibrary.catch(function(err, status){
+      vm.startSearch = false;
+      vm.userError = true;
+      vm.errAttempt++;
+    });
 
     userLibrary.then(function(data) {
       var recommendationPool = data;

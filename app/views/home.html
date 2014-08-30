@@ -46,4 +46,19 @@
       <img src="images/loading.gif" alt="Loading...">
     </p>
   </div>
+
+  <div class="col-xs-9" ng-show="home.userError">
+    <div class="well text-center">
+      <h1 class="baka">ばか</h1>
+      <h3 class="error-title">ｕｓｅｒｎａｍｅ　ｅｒｒｏｒ</h3>
+      <p ng-show="home.errAttempt === 1">Please try again!</p>
+      <p ng-show="home.errAttempt === 2">Opps that's odd, give it another go!</p>
+      <p ng-show="home.errAttempt === 3">Hey third time lucky</p>
+      <p ng-show="home.errAttempt >= 4 && home.errAttempt < 8">Ok, ping me and I'll see if anything broke</p>
+      <p ng-show="home.errAttempt >= 8 && home.errAttempt < 14">Hey, you can stop pinging me now</p>
+      <p ng-show="home.errAttempt >= 14 && home.errAttempt < 20">Seriously stop that</p>
+      <p ng-show="home.errAttempt >= 20 && home.errAttempt < 9001">You've tried {{ home.errAttempt }} times now. I don't think it will suddenly start working now.</p>
+      <p ng-show="home.errAttempt >= 9001">IT'S OVER 9000! - Current count: {{ home.errAttempt }}</p>
+    </div>
+  </div>
 </div>

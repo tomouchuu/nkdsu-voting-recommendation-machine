@@ -21,7 +21,7 @@ function NkdsuService($q, $http) {
         deferred.resolve(output);
       })
       .error(function(err, status) {
-          deferred.reject(err, status);
+        deferred.reject(err, status);
       });
 
     return deferred.promise;
