@@ -3,4 +3,6 @@ body.dance { background: url('../images/loading.gif') repeat 0 0 scroll transpar
 .dance .sidebar,
 .dance .song { background: #fff; }
 
+.dance .song.selected > .art { opacity: 0.2;  }
+
 .dance-link { cursor: pointer; }
