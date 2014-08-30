@@ -7,9 +7,9 @@
 
     <form role="form" ng-submit="home.submit(home.username)">
       <div class="form-group">
-        <input type="text" class="form-control" placeholder="Hummingbird Username" ng-model="home.username">
+        <input type="text" class="form-control" placeholder="Hummingbird Username" ng-model="home.username" ng-init="home.username = ''">
       </div>
-      <button type="submit" class="btn btn-default btn-block" ng-click="home.recommendedSongs = ''">{{ home.buttonText }}</button>
+      <button type="submit" class="btn btn-default btn-block" ng-click="home.recommendedSongs = ''"ng-class="{disabled: home.username === ''}">{{ home.buttonText }}</button>
     </form>
 
     <div class="twitter">
