@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-xs-3 sidebar">
+  <div class="col-sm-3 sidebar">
     <div class="information">
       <h1>Toridesu~</h1>
       <p class="lead">A song recommendation machine for <a href="https://nkd.su">Neko Desu</a></p>
@@ -33,7 +33,7 @@
     </div>
   </div>
 
-  <div class="col-xs-9" ng-show="home.recommendedSongs">
+  <div class="col-sm-9" ng-show="home.recommendedSongs">
     <div class="song" ng-repeat="song in home.recommendedSongs" data-voteUrl="{{ song.url }}">
       <div style="background-image: url('{{ song.background }}');" class="art"></div>
       <h3>{{ song.title }} <small>{{ song.artist }}</small></h3>
@@ -41,13 +41,13 @@
     </div>
   </div>
 
-  <div class="col-xs-9" ng-show="home.startSearch">
+  <div class="col-sm-9" ng-show="home.startSearch">
     <p class="text-center">
       <img src="images/loading.gif" alt="Loading...">
     </p>
   </div>
 
-  <div class="col-xs-9" ng-show="home.userError && !home.startSearch && !home.recommendedSongs">
+  <div class="col-sm-9" ng-show="home.userError && !home.startSearch && !home.recommendedSongs">
     <div class="well text-center">
       <h1 class="baka">ばか</h1>
       <h3 class="error-title">ｕｓｅｒｎａｍｅ　ｅｒｒｏｒ</h3>
