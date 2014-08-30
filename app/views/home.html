@@ -15,7 +15,7 @@
     <div class="twitter">
       <label for="twitterMsg">Enter optional message <br><small>{{ twitterLength }} characters left</small></label>
       <textarea ng-model="home.twitterMsg" id="twitterMsg" class="form-control" rows="5">{{ home.twitterMsg }}</textarea>
-      <a href="{{ voteTweet }}" class="btn btn-twitter btn-block" ng-class="{disabled: twitterLength < 0}">Vote for selected recommendations</a>
+      <a href="{{ voteTweet }}" class="btn btn-default btn-block" ng-class="{disabled: twitterLength < 0}">Vote for selected recommendations</a>
     </div>
 
     <div class="footer">

@@ -9,13 +9,20 @@ a { color: $nkdsu-orange; }
     text-decoration: none
   }
 
-.btn-twitter {
-  background-color: #55ACEE;
-  border-color: #ccc;
+.btn-default {
+  background: $nkdsu-orange;
   color: #fff;
 }
-  .btn-twitter:hover {
-    background-color: $nkdsu-orange;
-    border-color: #ccc;
+  .btn-default:hover {
+    background: darken($nkdsu-orange, 5%);
     color: #fff; 
+  }
+  .btn-default:active,
+  .btn-default:focus {
+    background: darken($nkdsu-orange, 10%);
+    color: #fff;
+    outline: none;
+  }
+  .btn-default.disabled {
+    background: $nkdsu-orange;
   }
