@@ -30,7 +30,7 @@ function MainCtrl($scope, $timeout, AppSettings, HummingbirdService, NkdsuServic
   var baseTwitterLength = (AppSettings.twitterCap - AppSettings.twitterAccount.length - 1);
 
   $scope.$watch('home.twitterMsg', function(newValue, oldValue) {
-    if (angular.isDefined(newValue))
+    if (angular.isDefined(newValue) && $scope.voteurls !== '')
     {
       $scope.twitterLength = (baseTwitterLength - (numberOfUrls * AppSettings.twitterLinkLength) - numberOfUrls - newValue.length);
       $scope.voteTweet = 'https://twitter.com/intent/tweet?text=@nkdsu ' + $scope.voteurls + vm.twitterMsg;
@@ -38,18 +38,22 @@ function MainCtrl($scope, $timeout, AppSettings, HummingbirdService, NkdsuServic
     else
     {
       vm.twitterMsg = '';
-      $scope.voteTweet = 'https://twitter.com/intent/tweet?text=@nkdsu ' + $scope.voteurls;
+      $scope.voteTweet = '';
     }
   });
 
   $scope.$watch('voteurls', function(newValue, oldValue) {
-    if (angular.isDefined(newValue) && vm.twitterMsg === '')
+    if (angular.isDefined(newValue) && vm.twitterMsg !== '')
     {
       $scope.voteTweet = 'https://twitter.com/intent/tweet?text=@nkdsu ' + $scope.voteurls + vm.twitterMsg;
     }
-    else if (angular.isDefined(newValue))
+    else if (newValue !== '')
     {
       $scope.voteTweet = 'https://twitter.com/intent/tweet?text=@nkdsu ' + $scope.voteurls;
+    }
+    else
+    {
+      $scope.voteTweet = '';
     }
   });
 
