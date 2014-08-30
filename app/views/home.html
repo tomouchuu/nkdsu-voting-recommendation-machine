@@ -58,7 +58,15 @@
       <p ng-show="home.errAttempt >= 8 && home.errAttempt < 14">Hey, you can stop pinging me now</p>
       <p ng-show="home.errAttempt >= 14 && home.errAttempt < 20">Seriously stop that</p>
       <p ng-show="home.errAttempt >= 20 && home.errAttempt < 9001">You've tried {{ home.errAttempt }} times now. I don't think it will suddenly start working now.</p>
-      <p ng-show="home.errAttempt >= 9001">IT'S OVER 9000! - Current count: {{ home.errAttempt }}</p>
+      <div ng-show="home.errAttempt >= 9001">
+        <p>Current count: {{ home.errAttempt }}</p>
+        <div class="embed-responsive embed-responsive-4by3" ng-hide="home.errAttempt === 525600">
+          <iframe src="//www.youtube.com/embed/SiMHTK15Pik?rel=0&autoplay=1" allowfullscreen></iframe>
+        </div>
+        <div class="embed-responsive embed-responsive-16by9" ng-show="home.errAttempt === 525600">
+          <iframe src="//www.youtube.com/embed/aJ2nxRz0a_g?rel=0&autoplay=1" allowfullscreen></iframe>
+        </div>
+      </div>
     </div>
   </div>
 </div>
