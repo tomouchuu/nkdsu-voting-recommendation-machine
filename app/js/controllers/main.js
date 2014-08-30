@@ -5,7 +5,7 @@ var controllersModule = require('./_index');
 /**
  * @ngInject
  */
-function MainCtrl($scope, $timeout, AppSettings, HummingbirdService, NkdsuService) {
+function MainCtrl($rootScope, $scope, $timeout, AppSettings, HummingbirdService, NkdsuService) {
 
   function shuffleArray(array) {
     for (var i = array.length - 1; i > 0; i--) {
@@ -149,6 +149,20 @@ function MainCtrl($scope, $timeout, AppSettings, HummingbirdService, NkdsuServic
     });
 
   }
+
+  vm.danceparty = false;
+  $rootScope.danceparty = false;
+
+  $scope.$watch('home.danceparty', function(newValue, oldValue) {
+    if (newValue === true)
+    {
+      $rootScope.danceparty = true;
+    }
+    else
+    {
+      $rootScope.danceparty = false;
+    }
+  });
 
 }
 
