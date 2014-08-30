@@ -1,4 +1,7 @@
-body { color: $font-color; }
+body {
+  color: $font-color;
+  font-family: 'Lato', Arial, sans-serif; 
+}
 
 a { color: $nkdsu-orange; }
   a:hover {
