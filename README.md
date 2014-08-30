@@ -1,6 +1,6 @@
 # Toridesu~
 
-## NkdSu Hummingbird Voting Recommendation
+## Neko Desu Hummingbird Voting Recommendation System
 
 ### What?
 
