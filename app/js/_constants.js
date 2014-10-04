@@ -5,7 +5,7 @@ var AppSettings = {
   twitterCap: 140,
   twitterAccount: '@nkdsu',
   twitterLinkLength: 23,
-  mashapeAuthKey: 'mashape authkey here',
+  mashapeAuthKey: 'Hummingbird Mashape Auth Key',
 };
 
 module.exports = AppSettings;

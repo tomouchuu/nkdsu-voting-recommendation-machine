@@ -6,27 +6,27 @@ var fs = require('fs');
 /**
  * @ngInject
  */
-function HummingbirdService(AppSettings, $q, $http) {
+function MALService(AppSettings, $q, $http) {
 
   var service = {};
 
   service.get = function(username) {
     var deferred = $q.defer();
-
-    // Send a request to hummingbird's mashape api to get the users library
-    $http({
-      method: 'GET',
-      url: 'https://hbrd-v1.p.mashape.com/users/' + username + '/library',
-      headers: {
-        "X-Mashape-Authorization": AppSettings.mashapeAuthKey,
-      },
-    })
+      // Send a request to the MAL api to get the users library
+      $http({
+        method: 'POST',
+        url: '/proxy/malproxy.php',
+        data: {
+          "u": username,
+          "useragent": AppSettings.malAPIUserAgent,
+        }
+      })
       .success(function(data) {
         // It was successful, so lets filter the results
-        var output = data.filter(function(x){
+        var output = data.anime.filter(function(x){
           // We don't want shows that haven't aired or they haven't watched
-          x.anime.status !== 'Not Yet Aired';
-          return x.status !== 'plan-to-watch';
+          x.series_status !== '3';
+          return x.my_status !== '6';
         });
         deferred.resolve(output);
       })
@@ -42,4 +42,4 @@ function HummingbirdService(AppSettings, $q, $http) {
 
 }
 
-servicesModule.service('HummingbirdService', HummingbirdService);
+servicesModule.service('MALService', MALService);

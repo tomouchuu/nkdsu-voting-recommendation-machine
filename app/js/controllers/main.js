@@ -5,7 +5,7 @@ var controllersModule = require('./_index');
 /**
  * @ngInject
  */
-function MainCtrl($rootScope, $scope, $timeout, AppSettings, HummingbirdService, NkdsuService) {
+function MainCtrl($rootScope, $scope, $timeout, AppSettings, HummingbirdService, MALService, NkdsuService) {
 
   // Shuffle Array function
   function shuffleArray(array) {
@@ -83,7 +83,7 @@ function MainCtrl($rootScope, $scope, $timeout, AppSettings, HummingbirdService,
 
   // Initial search text
   vm.buttonText = 'Recommend me some songs';
-  
+
   // Set the error attempt count to 0
   vm.errAttempt = 0;
 
@@ -97,7 +97,20 @@ function MainCtrl($rootScope, $scope, $timeout, AppSettings, HummingbirdService,
 
     // Init the songlist & userLibrary
     var recommendedSongs = [];
-    var userLibrary = HummingbirdService.get(username);
+    var userLibrary = '';
+
+    if (vm.service === 'HB')
+    {
+      userLibrary = HummingbirdService.get(username);
+    }
+    else if (vm.service === 'MAL')
+    {
+      userLibrary = MALService.get(username);
+    }
+    else
+    {
+      // Error
+    }
 
     // If there was an error getting a users library
     userLibrary.catch(function(err, status){
@@ -128,8 +141,21 @@ function MainCtrl($rootScope, $scope, $timeout, AppSettings, HummingbirdService,
       // For each show...
       angular.forEach(shuffledPool, function(anime){
         // Get the shows normal & alternate title
-        var animeTitleA = anime.anime.title;
-        var animeTitleB = anime.anime.alternate_title;
+        var animeTitleA = '';
+        var animeTitleB = '';
+        if (vm.service === 'HB')
+        {
+          animeTitleA = anime.anime.title;
+          animeTitleB = anime.anime.alternate_title;
+        }
+        else if (vm.service === 'MAL')
+        {
+          animeTitleA = anime.series_title;
+        }
+        else
+        {
+          // Error
+        }
 
         // Search for the normal title in NekoDesu's song list
         var nkdsuSearchA = NkdsuService.get(animeTitleA);
